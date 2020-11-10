@@ -164,6 +164,8 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,  //Jwt Auth
 
         Silber\Bouncer\BouncerServiceProvider::class, //Authorization
+
+        Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class, //Model generator
     ],
 
     /*

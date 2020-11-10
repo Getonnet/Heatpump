@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>BotMan Studio</title>
+    <title>Chat Bot</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
@@ -38,6 +38,6 @@
     </div>
 </div>
 
-<script src="/js/app.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

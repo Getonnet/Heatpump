@@ -19,7 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('user_types',['Super Admin', 'Admin', 'Customer'])->default('Customer');
+            $table->string('phone',22)->nullable();
+            $table->string('zip_code',20)->nullable();
+            $table->string('address')->nullable()->comment('Street Address');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

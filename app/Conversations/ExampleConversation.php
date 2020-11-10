@@ -2,6 +2,7 @@
 
 namespace App\Conversations;
 
+use App\User;
 use Illuminate\Foundation\Inspiring;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Question;
@@ -10,10 +11,15 @@ use BotMan\BotMan\Messages\Conversations\Conversation;
 
 class ExampleConversation extends Conversation
 {
+
+    protected $firstname;
+
+    protected $email;
+
     /**
      * First question
      */
-    public function askReason()
+   /* public function askReason()
     {
         $question = Question::create("Huh - you woke me up. What do you need?")
             ->fallback('Unable to ask question')
@@ -33,6 +39,27 @@ class ExampleConversation extends Conversation
                 }
             }
         });
+    }*/
+
+    public function askFirstname()
+    {
+        $this->ask('Hello! What is your firstname?', function(Answer $answer) {
+            // Save result
+            $this->firstname = $answer->getText();
+
+            $this->say('Nice to meet you '.$this->firstname);
+            $this->askEmail();
+        });
+    }
+
+    public function askEmail()
+    {
+        $this->ask('One more thing - what is your email?', function(Answer $answer) {
+            // Save result
+            $this->email = $answer->getText();
+
+            $this->say('Great - that is all we need, '.$this->firstname);
+        });
     }
 
     /**
@@ -40,6 +67,7 @@ class ExampleConversation extends Conversation
      */
     public function run()
     {
-        $this->askReason();
+       // $this->askReason();
+        $this->askFirstname();
     }
 }

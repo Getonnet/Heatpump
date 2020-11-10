@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>BotMan Studio</title>
+    <title>Chat Bot</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="links">
-            <a href="/botman/tinker">Tinker</a>
+            <a href="/">Tinker</a>
             <a href="https://botman.io/docs" target="_blank">Documentation</a>
             <a href="https://twitter.com/botman_io" target="_blank">News</a>
             <a href="https://rauchg-slackin-jtdkltstsj.now.sh/" target="_blank">Slack</a>
