@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone',22)->nullable();
             $table->string('zip_code',20)->nullable();
             $table->string('address')->nullable()->comment('Street Address');
+            $table->string('photo')->default('uploads/admin/default.jpg');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

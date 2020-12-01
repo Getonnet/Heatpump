@@ -11,13 +11,12 @@ return [
     'page_not_found' => ['error' => 'Page Not Found.'],
     'internal_error' => ['error' => 'Internal Server Error.'],
 
-    'jwt_expire' => 60,
+    'jwt_expire' => 600,
 
     'validation_error_status_code' => 422,
     'query_error_status_code' => 400,
     'unauthorized_status_code' => 401,
     'not_found_status_code' => 404,
     'internal_error_status_code' => 500,
-
 
 ];

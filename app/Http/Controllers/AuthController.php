@@ -78,6 +78,6 @@ class AuthController extends Controller
      */
     public function guard()
     {
-        return Auth::guard();
+        return Auth::guard('api');
     }
 }

@@ -17,9 +17,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
 
+Route::group(['middleware' => ['auth:api', 'cors']], function () {
+
+    Route::resource('/product/category', 'Product\ProductCategoryController');
+
+    Route::resource('/product/brand', 'Product\ProductBrandController');
+
+});
+
 Route::group(['middleware' => 'cors'], function () {
 
-    Route::get('/refresh', 'TestController@refresh')->name('refresh'); //Refresh website
+    Route::get('/catch', 'TestController@refresh')->name('refresh'); //Refresh website
 
 
     Route::resource('/users', 'User\UserController');
