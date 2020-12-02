@@ -11,6 +11,7 @@ class TestController extends Controller
         Artisan::call('cache:clear');
         Artisan::call('config:cache');
         Artisan::call('view:cache');
+        Artisan::call('route:cache');
 
         return response()->json(['message' => 'Page Refresh']);
     }
