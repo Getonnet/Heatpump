@@ -24,7 +24,7 @@
                     {{$role->title}}
                 @endslot
 
-                <form id="abForm" action="#" method="post" enctype="multipart/form-data">
+                <form id="abForm" action="{{route('user.ability',['id' => $role->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
