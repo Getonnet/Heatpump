@@ -45,9 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
          * User
          * -----------------
          */
-
-        Route::resource('/user/role', 'Admin\User\UserRoleController',['as' => 'user']);
         Route::put('/user/ability/{id}', 'Admin\User\UserRoleController@ability')->name('user.ability');
+        Route::resource('/user/role', 'Admin\User\UserRoleController',['as' => 'user']);
         Route::resource('/user', 'Admin\User\UserController');
         /*-------------------
          * /User
