@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Bouncer;
 
 class UserController extends Controller
 {
@@ -19,8 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $table = User::whereIn('user_types', ['Super Admin', 'Admin'])->get();
-        return view('admin.user.user')->with(['table' => $table]);
+        $table = User::orderBy('id', 'DESC')->whereIn('user_types', ['Super Admin', 'Admin'])->get();
+        $role = Bouncer::role()->orderBy('title')->get();
+        return view('admin.user.user')->with(['table' => $table, 'roles' => $role]);
     }
 
     /**
@@ -112,7 +114,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
+       // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'string|required|min:3|max:191',
             'email' => 'required|email|unique:users,email,'.$id,
@@ -149,6 +151,10 @@ class UserController extends Controller
                 $table->photo = $filePath;
             }
             $table->save();
+
+
+            Bouncer::sync($table)->roles($request->role);
+
 
         }catch (\Exception $ex) {
             return redirect()->back()->with(config('notify.db'));

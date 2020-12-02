@@ -1,6 +1,6 @@
 @section('box')
 
-    @component('components.modal', ['id' => 'addModal', 'action' => route('user.store'), 'title' => 'Create new user'])
+    @component('components.modal', ['id' => 'addModal', 'action' => route('user.store'), 'title' => __('Create new user')])
         <div class="form-group">
             <label for="add-name">{{__('User name')}}</label>
             <input type="text" name="name" class="form-control" id="add-name" placeholder="{{__('User name')}}" value="{{ old('name') }}" required />
@@ -31,6 +31,16 @@
         </div>
 
         <div class="form-group">
+            <label for="add-role">{{__('Select Role')}}</label>
+            <select name="role" class="form-control" id="add-role">
+                <option value="">{{__('Select Role')}}</option>
+                @foreach($roles as $row)
+                    <option value="{{$row->id}}">{{$row->title}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="add-photo">{{__('Photo')}}</label>
             <input type="file" name="photo" class="form-control" id="add-photo" accept="image/x-png,image/gif,image/jpeg" />
             @if ($errors->has('photo'))
@@ -42,7 +52,7 @@
 
 <!-- ********************* -->
 
-    @component('components.modal', ['id' => 'ediModal', 'title' => 'Edit user'])
+    @component('components.modal', ['id' => 'ediModal', 'title' => __('Edit user')])
         @method('PUT')
         <div class="form-group">
             <label for="edi-name">{{__('User name')}}</label>
@@ -71,6 +81,16 @@
         <div class="form-group">
             <label for="edi-repassword">{{__('Confirm Password')}}</label>
             <input type="password" name="password_confirmation" class="form-control" id="edi-repassword" placeholder="{{__('Confirm Password')}}" />
+        </div>
+
+        <div class="form-group">
+            <label for="edi-role">{{__('Select Role')}}</label>
+            <select name="role" class="form-control" id="edi-role">
+                <option value="">{{__('Select Role')}}</option>
+                @foreach($roles as $row)
+                    <option value="{{$row->id}}">{{$row->title}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-group">

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Bouncer;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -30,6 +31,16 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+
+    public function getRolesAttribute(){
+        $roleName = $this->getRoles()->first();
+        if($roleName != ''){
+            $tbl = Bouncer::role()->where('name', $roleName)->orderBy('id', 'DESC')->first();
+            return $tbl;
+        }else{
+            return '';
+        }
+    }
 
     public function getJWTIdentifier()
     {

@@ -13,10 +13,10 @@
                         <a href="https://getonnet.no" class="nav-link" target="_blank">Getonnet</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://getonnet.no/support/" class="nav-link" target="_blank">Support</a>
+                        <a href="https://getonnet.no/support/" class="nav-link" target="_blank">{{__('Support')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://getonnet.no/kontakt/" class="nav-link" target="_blank">Contact</a>
+                        <a href="https://getonnet.no/kontakt/" class="nav-link" target="_blank">{{__('Contact')}}</a>
                     </li>
                 </ul>
             </div>

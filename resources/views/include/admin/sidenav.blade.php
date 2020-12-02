@@ -40,18 +40,22 @@
                                         <span class="sidenav-normal"> {{__('product List')}} </span>
                                     </a>
                                 </li>
+                                @can ('cat-view')
                                 <li class="nav-item">
                                     <a class="nav-link {{request()->routeIs('product.category.index') ? 'active':''}}" href="{{route('product.category.index')}}">
                                         <span class="sidenav-mini-icon"> C </span>
                                         <span class="sidenav-normal"> {{__('Category')}} </span>
                                     </a>
                                 </li>
+                                @endcan
+                                @can ('brand-view')
                                 <li class="nav-item">
                                     <a class="nav-link {{request()->routeIs('product.brand.index') ? 'active':''}}" href="{{route('product.brand.index')}}">
                                         <span class="sidenav-mini-icon"> B </span>
                                         <span class="sidenav-normal"> {{__('Brands')}} </span>
                                     </a>
                                 </li>
+                                @endcan
                                 <li class="nav-item">
                                     <a class="nav-link {{request()->routeIs('product.attribute.index') ? 'active':''}}" href="{{route('product.attribute.index')}}">
                                         <span class="sidenav-mini-icon"> A </span>

@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @extends('admin.user.box.user')
 @section('title')
-    Users
+    {{ __('Users') }}
 @endsection
 
 @section('btn')
     @component('components.head-btn')
         <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
             <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-            <span class="btn-inner--text">Create New User</span>
+            <span class="btn-inner--text">{{__('Create New User')}}</span>
         </button>
     @endcomponent
 @endsection
@@ -19,16 +19,16 @@
         <div class="col">
             @component('components.card-table')
                 @slot('title')
-                    User List
+                    {{ __('User List') }}
                 @endslot
 
                 <table class="table table-flush datatable">
                     <thead class="thead-light">
                         <tr>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
+                            <th>{{__('Photo')}}</th>
+                            <th>{{__('Name')}}</th>
+                            <th>{{__('Email')}}</th>
+                            <th>{{__('Role')}}</th>
                             <th class="text-right"><i class="fas fa-ellipsis-v"></i></th>
                         </tr>
                     </thead>
@@ -42,15 +42,15 @@
                             </td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->email}}</td>
-                            <td>{{$row->user_types}}</td>
+                            <td>{{$row->roles->title ?? ''}}</td>
                             @component('components.action', ['del' => $row->id])
                                 <a class="dropdown-item ediBtn" href="{{route('user.update', ['id' => $row->id])}}"
                                     data-name="{{$row->name}}"
                                     data-email="{{$row->email}}"
-                                    data-utype="{{$row->user_types}}"
-                                   data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> Edit</a>
+                                    data-role="{{$row->roles->id ?? ''}}"
+                                   data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
 
-                                <a class="dropdown-item delBtn" href="{{route('user.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i> Delete</a>
+                                <a class="dropdown-item delBtn" href="{{route('user.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
                             @endcomponent
                         </tr>
                         @endforeach
@@ -72,10 +72,12 @@
                 let url = $(this).attr('href');
                 let name = $(this).data('name');
                 let email = $(this).data('email');
+                let role = $(this).data('role');
 
                 $('#ediModal form').attr('action', url);
                 $('#ediModal [name=name]').val(name);
                 $('#ediModal [name=email]').val(email);
+                $('#ediModal [name=role]').val(role);
 
             });
 

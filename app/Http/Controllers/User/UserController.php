@@ -91,6 +91,7 @@ class UserController extends Controller
             return response()->json([config('naz.db_error')], config('naz.query_error_status_code'));
         }
 
+
         return response()->json($table);
     }
 
