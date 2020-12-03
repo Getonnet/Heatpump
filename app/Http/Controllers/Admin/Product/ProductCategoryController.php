@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
+use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ProductCategoryController extends Controller
 {
@@ -14,7 +16,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $table = ProductCategory::orderBy('id', 'DESC')->get();
+        return view('admin.products.category')->with(['table' => $table]);
     }
 
     /**
@@ -35,7 +38,23 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|required|min:3|max:191'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        try{
+            $table = new ProductCategory();
+            $table->name = $request->name;
+            $table->save();
+
+        }catch (\Exception $ex) {
+            return redirect()->back()->with(config('notify.db'));
+        }
+
+        return redirect()->back()->with(config('notify.save'));
     }
 
     /**
@@ -69,7 +88,23 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|required|min:3|max:191'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        try{
+            $table = ProductCategory::find($id);
+            $table->name = $request->name;
+            $table->save();
+
+        }catch (\Exception $ex) {
+            return redirect()->back()->with(config('notify.db'));
+        }
+
+        return redirect()->back()->with(config('notify.edit'));
     }
 
     /**
@@ -80,6 +115,7 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ProductCategory::destroy($id);
+        return redirect()->back()->with(config('notify.del'));
     }
 }

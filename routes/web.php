@@ -55,6 +55,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         /*-------------------
+         * Website Settings
+         * -----------------
+         */
+        Route::get('/settings', 'Admin\SiteSettingsController@index')->name('settings');
+        /*-------------------
+         * /Website Settings
+         * -----------------
+         */
+
+        /*-------------------
          * Demo Page
          * -----------------
          */

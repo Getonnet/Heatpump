@@ -82,7 +82,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{request()->routeIs('user.*') ? 'active':''}}" aria-expanded="{{request()->routeIs('user.*') ? 'true':'false'}}" href="#navbar-user" data-toggle="collapse" role="button" aria-controls="navbar-user">
-                            <i class="ni ni-ui-04 text-info"></i>
+                            <i class="ni ni-single-02 text-info"></i>
                             <span class="nav-link-text">Users</span>
                         </a>
                         <div class="collapse {{request()->routeIs('user.*') ? 'show':''}}" id="navbar-user">
@@ -127,12 +127,12 @@
                         </div>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="ni ni-chart-pie-35 text-info"></i>
-                            <span class="nav-link-text">Charts</span>
+                    <!--<li class="nav-item">
+                        <a class="nav-link {{request()->routeIs('settings') ? 'active':''}}" href="{{route('settings')}}">
+                            <i class="ni ni-settings text-warning"></i>
+                            <span class="nav-link-text">Settings</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="ni ni-calendar-grid-58 text-red"></i>
