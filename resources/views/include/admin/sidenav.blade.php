@@ -37,7 +37,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{request()->routeIs('product.index') ? 'active':''}}" href="{{route('product.index')}}">
                                         <span class="sidenav-mini-icon"> P </span>
-                                        <span class="sidenav-normal"> {{__('product List')}} </span>
+                                        <span class="sidenav-normal"> {{__('Product List')}} </span>
                                     </a>
                                 </li>
                                 @can ('cat-view')
