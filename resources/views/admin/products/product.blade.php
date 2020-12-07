@@ -58,6 +58,7 @@
                                    data-noise="{{$row->noise_level}}"
                                    data-capacity="{{$row->capacity}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
+                                <a class="dropdown-item" href="{{route('product.show', ['id' => $row->id])}}"><i class="fas fa-eye text-info"></i> {{ __('Add Attribute') }}</a>
                                 <a class="dropdown-item delBtn" href="{{route('product.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
                             @endcomponent
                         </tr>

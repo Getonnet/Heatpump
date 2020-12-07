@@ -25,12 +25,10 @@ class ProductController extends Controller
         $table = Product::orderBy('id', 'DESC')->get();
         $categorys = ProductCategory::orderBy('name')->get();
         $brands = ProductBrand::orderBy('name')->get();
-        $attr = Attribute::orderBy('name')->get();
         return view('admin.products.product')->with([
             'table' => $table,
             'categorys' => $categorys,
-            'brands' => $brands,
-            'attr' => $attr
+            'brands' => $brands
         ]);
     }
 
@@ -107,7 +105,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $table = Product::find($id);
+        $attr = Attribute::orderBy('name')->get();
+        $attr = Attribute::orderBy('name')->get();
+
+        return view('admin.products.product-show')->with(['table' => $table, 'attr' => $attr]);
     }
 
     /**
