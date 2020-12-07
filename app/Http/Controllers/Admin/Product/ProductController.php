@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Product;
 
 use App\Attribute;
 use App\Product;
+use App\ProductAttribute;
 use App\ProductBrand;
 use App\ProductCategory;
 use App\Traits\UploadTrait;
@@ -106,9 +107,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $table = Product::find($id);
-        $attr = Attribute::orderBy('name')->get();
-        $attr = Attribute::orderBy('name')->get();
-
+        $attr_id = $table->productAttributes()->select('attributes_id')->get()->toArray();
+        $attr = Attribute::orderBy('name')->whereNotIn('id', $attr_id)->get();
         return view('admin.products.product-show')->with(['table' => $table, 'attr' => $attr]);
     }
 
@@ -180,6 +180,36 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
+        return redirect()->back()->with(config('notify.del'));
+    }
+
+    public function attribute_add(Request $request, $id){
+        $validator = Validator::make($request->all(), [
+            'attr_value' => 'string|required|max:191',
+            'attributes_id' => 'required|numeric'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        try {
+
+            $table = new ProductAttribute();
+            $table->products_id = $id;
+            $table->attributes_id = $request->attributes_id;
+            $table->attr_value = $request->attr_value;
+            $table->save();
+
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(config('notify.db'));
+        }
+
+        return redirect()->back()->with(config('notify.save'));
+
+    }
+
+    public function attribute_del($id){
+        ProductAttribute::destroy($id);
         return redirect()->back()->with(config('notify.del'));
     }
 }

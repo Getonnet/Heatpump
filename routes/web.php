@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
          * Products
          * -----------------
          */
+        Route::put('/product/add-attribute/{id}', 'Admin\Product\ProductController@attribute_add')->name('product.add-attribute');
+        Route::delete('/product/del-attribute/{id}', 'Admin\Product\ProductController@attribute_del')->name('product.del-attribute');
         Route::resource('/product/category', 'Admin\Product\ProductCategoryController',['as' => 'product']);
         Route::resource('/product/brand', 'Admin\Product\ProductBrandController',['as' => 'product']);
         Route::resource('/product/attribute', 'Admin\Product\ProductAttributeController',['as' => 'product']);

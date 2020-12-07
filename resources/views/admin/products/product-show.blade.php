@@ -61,54 +61,31 @@
                     </div>
                     <div class="col">
                         <table class="table align-items-center table-flush">
-                            <tr>
-                                <th>{{__('Type')}}</th>
-                                <td>{{$table->product_types}}</td>
-                                <td class="text-right"><a href="#" class="btn btn-sm btn-instagram btn-icon-only">
-                                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>{{__('Category')}}</th>
-                                <td>{{$table->productCategory->name ?? ''}}</td>
-                                <td class="text-right"><a href="#" class="btn btn-sm btn-instagram btn-icon-only">
-                                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>{{__('Brand')}}</th>
-                                <td>{{$table->productBrand->name ?? ''}}</td>
-                                <td class="text-right"><a href="#" class="btn btn-sm btn-instagram btn-icon-only">
-                                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>{{__('Noise Level')}}</th>
-                                <td>{{$table->noise_level}}</td>
-                                <td class="text-right"><a href="#" class="btn btn-sm btn-instagram btn-icon-only">
-                                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>{{__('Capacity')}}</th>
-                                <td>{{$table->capacity}}</td>
-                                <td class="text-right"><a href="#" class="btn btn-sm btn-instagram btn-icon-only">
-                                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>{{__('Price')}}</th>
-                                <td>{{$table->price}}</td>
-                                <td class="text-right"><a href="#" class="btn btn-sm btn-instagram btn-icon-only">
-                                        <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
+
+                            @php
+                                $attrs = $table->productAttributes()->get();
+                            @endphp
+
+                            @foreach($attrs as $row)
+
+                                <tr>
+                                    <th>{{$row->attribute->name ?? ''}}</th>
+                                    <td>{{$row->attr_value}}</td>
+                                    <td class="text-right">
+                                        <a href="{{route('product.del-attribute', ['id' => $row->id])}}" class="btn btn-sm btn-danger btn-icon-only" onclick="event.preventDefault();
+                                                     document.getElementById('delFormID{{$row->id}}').submit();">
+                                            <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
+                                        </a>
+
+                                        <form id="delFormID{{$row->id}}"  action="{{route('product.del-attribute', ['id' => $row->id])}}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('Delete')
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            @endforeach
+
                         </table>
                     </div>
                 </div>
