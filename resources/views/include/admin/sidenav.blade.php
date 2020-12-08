@@ -139,13 +139,13 @@
                             <i class="ni ni-settings text-warning"></i>
                             <span class="nav-link-text">Settings</span>
                         </a>
-                    </li>-->
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="ni ni-calendar-grid-58 text-red"></i>
                             <span class="nav-link-text">Calendar</span>
                         </a>
-                    </li>
+                    </li>-->
 
                     <!-- Divider -->
                     <hr class="my-3">
