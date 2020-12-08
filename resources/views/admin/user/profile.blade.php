@@ -20,7 +20,7 @@
                                 <span class="d-block mb-1">{{$table->name}}</span>
                                 <small class="h4 font-weight-light text-muted">{{$table->roles->title ?? ''}}</small>
                             </h5>
-                            <p class="text-danger">{{$table->email}}</p>
+                            <p class="text-indigo">{{$table->email}}</p>
                         </div>
                     </div>
 
