@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property int $id
@@ -27,7 +29,7 @@ class CustomerOrder extends Model
     /**
      * @var array
      */
-    protected $fillable = ['users_id', 'name', 'zip_code', 'address', 'contact', 'email', 'area_info', 'insulated', 'wall_type', 'uniq_session', 'deleted_at', 'created_at', 'updated_at'];
+    protected $fillable = ['users_id', 'name', 'zip_code', 'address', 'contact', 'email', 'area_info', 'insulated', 'wall_type', 'uniq_session', 'status', 'deleted_at', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -44,4 +46,13 @@ class CustomerOrder extends Model
     {
         return $this->hasMany('App\OrderItem', 'customer_orders_id');
     }
+
+    public function totalAmount(){
+        return $this->orderItems()->sum(DB::raw('price * qty'));
+    }
+
+    public function getRegDateAttribute(){
+        return Carbon::parse($this->created_at)->format('d/m/Y');
+    }
+
 }

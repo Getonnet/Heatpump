@@ -67,7 +67,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{request()->routeIs('orders.index') ? 'active':''}}" href="{{route('orders.index')}}">
                             <i class="ni ni-delivery-fast text-info"></i>
                             <span class="nav-link-text">Order List</span>
                         </a>

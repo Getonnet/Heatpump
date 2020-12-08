@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @extends('admin.customer.box.customer')
 @section('title')
-    {{ __('Customer List') }}
+    {{ __('Order List') }}
 @endsection
 
 
@@ -11,35 +11,35 @@
         <div class="col">
             @component('components.card-table')
                 @slot('title')
-                    {{ __('Customer List') }}
+                    {{ __('Order List') }}
                 @endslot
 
                 <table class="table table-flush datatable">
                     <thead class="thead-light">
                     <tr>
+                        <th>{{__('Order ID')}}</th>
                         <th>{{__('Date')}}</th>
                         <th>{{__('Name')}}</th>
                         <th>{{__('Email')}}</th>
                         <th>{{__('Phone')}}</th>
-                        <th>{{__('Address')}}</th>
-                        <th>{{__('Zip Code')}}</th>
+                        <th>{{__('Amount')}}</th>
                         <th class="text-right"><i class="fas fa-ellipsis-v"></i></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($table as $row)
                         <tr>
+                            <td>{{$row->id}}</td>
                             <td>{{$row->reg_date}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->email}}</td>
-                            <td>{{$row->phone}}</td>
-                            <td>{{$row->address}}</td>
-                            <td>{{$row->zip_code}}</td>
+                            <td>{{$row->contact}}</td>
+                            <td>{{$row->totalAmount() ?? 0}}</td>
                             @component('components.action', ['del' => $row->id])
                                 <a class="dropdown-item ediBtn" href="{{route('customer.update', ['id' => $row->id])}}"
                                    data-name="{{$row->name}}"
                                    data-email="{{$row->email}}"
-                                   data-phone="{{$row->phone}}"
+                                   data-contact="{{$row->contact}}"
                                    data-address="{{$row->address}}"
                                    data-zip="{{$row->zip_code}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
