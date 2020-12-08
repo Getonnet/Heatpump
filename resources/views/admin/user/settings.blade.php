@@ -67,7 +67,7 @@
                                 <small class="form-text text-danger">{{ $errors->first('photo') }}</small>
                             @endif
                         </div>
-                        <button class="btn btn-primary" type="submit">Submit form</button>
+                        <button class="btn btn-primary" type="submit">{{__('Update Profile')}}</button>
                     </form>
                 </div>
 

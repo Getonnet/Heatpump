@@ -38,17 +38,17 @@
                         </div>
                         <a href="{{route('user.show', ['id' => Auth::user()->id])}}" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
-                            <span>My profile</span>
+                            <span>{{__('My profile')}}</span>
                         </a>
                         <a href="{{route('user.edit', ['id' => Auth::user()->id])}}" class="dropdown-item">
                             <i class="ni ni-settings-gear-65"></i>
-                            <span>Settings</span>
+                            <span>{{__('Profile Update')}}</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
+                            <span>{{__('Logout')}}</span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
