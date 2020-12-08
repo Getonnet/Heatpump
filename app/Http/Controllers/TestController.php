@@ -16,9 +16,9 @@ class TestController extends Controller
         return response()->json(['message' => 'Page Refresh']);
     }
 
-
-    public function pull(){
-        shell_exec( 'git pull origin master');
-        return 'Pulled';
-    }
+//
+//    public function pull(){
+//        shell_exec( 'git pull origin master');
+//        return 'Pulled';
+//    }
 }
