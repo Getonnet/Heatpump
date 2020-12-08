@@ -74,11 +74,18 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {{request()->routeIs('customer.index') ? 'active':''}}" href="{{route('customer.index')}}">
+                            <i class="ni ni-satisfied text-success"></i>
+                            <span class="nav-link-text">Customer List</span>
+                        </a>
+                    </li>
+
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="ni ni-atom text-primary"></i>
                             <span class="nav-link-text">Questions</span>
                         </a>
-                    </li>
+                    </li>-->
 
                     <li class="nav-item">
                         <a class="nav-link {{request()->routeIs('user.*') ? 'active':''}}" aria-expanded="{{request()->routeIs('user.*') ? 'true':'false'}}" href="#navbar-user" data-toggle="collapse" role="button" aria-controls="navbar-user">

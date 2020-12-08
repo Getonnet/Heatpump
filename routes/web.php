@@ -44,6 +44,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         /*-------------------
+         * Customer
+         * -----------------
+         */
+        Route::resource('/customer', 'Admin\Customer\CustomerController');
+        /*-------------------
+         * /Customer
+         * -----------------
+         */
+
+
+        /*-------------------
          * User
          * -----------------
          */

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Product;
+namespace App\Http\Controllers\Admin\Customer;
 
-use App\Attribute;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class ProductAttributeController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ProductAttributeController extends Controller
      */
     public function index()
     {
-        $table = Attribute::orderBy('id', 'DESC')->get();
-        return view('admin.products.attribute')->with(['table' => $table]);
+        $table = User::orderBy('id', 'DESC')->where('user_types', 'Customer')->get();
+        return view('admin.customer.customer')->with(['table' => $table]);
     }
 
     /**
@@ -39,20 +39,25 @@ class ProductAttributeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'string|required|min:3|max:191'
+            'name' => 'string|required|min:3|max:191',
+            'email' => 'string|email|required|unique:users',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        try{
 
-            $table = new Attribute();
+        try{
+            $table = new User();
             $table->name = $request->name;
+            $table->email = $request->email;
+            $table->phone = $request->phone;
+            $table->zip_code = $request->zip_code;
+            $table->address = $request->address;
+            $table->password = bcrypt('12345678'); //Using for Bypass required password
             $table->save();
 
         }catch (\Exception $ex) {
-            dd($ex);
             return redirect()->back()->with(config('notify.db'));
         }
 
@@ -90,16 +95,23 @@ class ProductAttributeController extends Controller
      */
     public function update(Request $request, $id)
     {
+         //dd($request->all());
         $validator = Validator::make($request->all(), [
-            'name' => 'string|required|min:3|max:191'
+            'name' => 'string|required|min:3|max:191',
+            'email' => 'required|email|unique:users,email,'.$id
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        try{
-            $table = Attribute::find($id);
+
+        try {
+            $table = User::find($id);
             $table->name = $request->name;
+            $table->email = $request->email;
+            $table->phone = $request->phone;
+            $table->zip_code = $request->zip_code;
+            $table->address = $request->address;
             $table->save();
 
         }catch (\Exception $ex) {
@@ -117,7 +129,7 @@ class ProductAttributeController extends Controller
      */
     public function destroy($id)
     {
-        Attribute::destroy($id);
+        User::destroy($id);
         return redirect()->back()->with(config('notify.del'));
     }
 }
