@@ -101,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-
+Route::get('/pull', 'TestController@pull')->name('pull');
 
 Auth::routes();
 
