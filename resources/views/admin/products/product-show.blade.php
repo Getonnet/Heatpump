@@ -60,33 +60,36 @@
                         </div>
                     </div>
                     <div class="col">
-                        <table class="table align-items-center table-flush">
+                        <div class="card">
+                            <table class="table align-items-center table-flush">
 
-                            @php
-                                $attrs = $table->productAttributes()->get();
-                            @endphp
+                                @php
+                                    $attrs = $table->productAttributes()->get();
+                                @endphp
 
-                            @foreach($attrs as $row)
+                                @foreach($attrs as $row)
 
-                                <tr>
-                                    <th>{{$row->attribute->name ?? ''}}</th>
-                                    <td>{{$row->attr_value}}</td>
-                                    <td class="text-right">
-                                        <a href="{{route('product.del-attribute', ['id' => $row->id])}}" class="btn btn-sm btn-danger btn-icon-only" onclick="event.preventDefault();
-                                                     document.getElementById('delFormID{{$row->id}}').submit();">
-                                            <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
-                                        </a>
+                                    <tr>
+                                        <th>{{$row->attribute->name ?? ''}}</th>
+                                        <td>{{$row->attr_value}}</td>
+                                        <td class="text-right">
+                                            <a href="{{route('product.del-attribute', ['id' => $row->id])}}" class="btn btn-sm btn-danger btn-icon-only" onclick="event.preventDefault();
+                                                    document.getElementById('delFormID{{$row->id}}').submit();">
+                                                <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
+                                            </a>
 
-                                        <form id="delFormID{{$row->id}}"  action="{{route('product.del-attribute', ['id' => $row->id])}}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('Delete')
-                                        </form>
-                                    </td>
-                                </tr>
+                                            <form id="delFormID{{$row->id}}"  action="{{route('product.del-attribute', ['id' => $row->id])}}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('Delete')
+                                            </form>
+                                        </td>
+                                    </tr>
 
-                            @endforeach
+                                @endforeach
 
-                        </table>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
 

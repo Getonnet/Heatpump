@@ -14,11 +14,11 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item d-sm-none">
+                <!--<li class="nav-item d-sm-none">
                     <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
                         <i class="ni ni-zoom-split-in"></i>
                     </a>
-                </li>
+                </li>-->
             </ul>
             <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
                 <li class="nav-item dropdown">
@@ -36,11 +36,11 @@
                         <div class="dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a href="#!" class="dropdown-item">
+                        <a href="{{route('user.show', ['id' => Auth::user()->id])}}" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
-                        <a href="#!" class="dropdown-item">
+                        <a href="{{route('user.edit', ['id' => Auth::user()->id])}}" class="dropdown-item">
                             <i class="ni ni-settings-gear-65"></i>
                             <span>Settings</span>
                         </a>

@@ -92,7 +92,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $table = User::find($id);
+        return view('admin.user.profile')->with(['table' => $table]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -102,7 +103,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $table = User::find($id);
+        $role = Bouncer::role()->orderBy('title')->get();
+        return view('admin.user.settings')->with(['table' => $table, 'roles' => $role]);
     }
 
     /**
