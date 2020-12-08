@@ -17,11 +17,12 @@
                 <table class="table table-flush datatable">
                     <thead class="thead-light">
                     <tr>
-                        <th>{{__('Order ID')}}</th>
+                        <th>{{__('S/N')}}</th>
                         <th>{{__('Date')}}</th>
                         <th>{{__('Name')}}</th>
                         <th>{{__('Email')}}</th>
                         <th>{{__('Phone')}}</th>
+                        <th>{{__('Status')}}</th>
                         <th>{{__('Amount')}}</th>
                         <th class="text-right"><i class="fas fa-ellipsis-v"></i></th>
                     </tr>
@@ -34,17 +35,12 @@
                             <td>{{$row->name}}</td>
                             <td>{{$row->email}}</td>
                             <td>{{$row->contact}}</td>
+                            <td>{{$row->status}}</td>
                             <td>{{$row->totalAmount() ?? 0}}</td>
                             @component('components.action', ['del' => $row->id])
-                                <a class="dropdown-item ediBtn" href="{{route('customer.update', ['id' => $row->id])}}"
-                                   data-name="{{$row->name}}"
-                                   data-email="{{$row->email}}"
-                                   data-contact="{{$row->contact}}"
-                                   data-address="{{$row->address}}"
-                                   data-zip="{{$row->zip_code}}"
-                                   data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
+                                <a class="dropdown-item" href="{{route('orders.show', ['id' => $row->id])}}"><i class="fas fa-eye text-info"></i> {{ __('View Order') }}</a>
 
-                                <a class="dropdown-item delBtn" href="{{route('customer.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                <a class="dropdown-item delBtn" href="{{route('orders.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
                             @endcomponent
                         </tr>
                     @endforeach
@@ -82,7 +78,7 @@
 
             $('.datatable').DataTable({
                 columnDefs: [
-                    { orderable: false, "targets": [6] }
+                    { orderable: false, "targets": [7] }
                 ]
             });
 

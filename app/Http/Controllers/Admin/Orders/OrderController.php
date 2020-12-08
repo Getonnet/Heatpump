@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Orders;
 use App\CustomerOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -48,7 +49,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $table = CustomerOrder::find($id);
+        return view('admin.orders.view-order')->with(['table' => $table]);
+
     }
 
     /**
@@ -71,6 +74,24 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'status' => 'string|required|min:7|max:10',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        try {
+            $table = CustomerOrder::find($id);
+            $table->status = $request->status;
+            $table->save();
+
+        }catch (\Exception $ex) {
+            return redirect()->back()->with(config('notify.db'));
+        }
+
+        return redirect()->back()->with(config('notify.edit'));
         //
     }
 
@@ -82,6 +103,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CustomerOrder::destroy($id);
+        return redirect()->back()->with(config('notify.del'));
     }
 }
