@@ -25,7 +25,7 @@
 {{--    };--}}
 {{--</script>--}}
 
-<script id="kindly-chat" src="https://chat.kindlycdn.com/kindly-chat.js" data-bot-key="e77a739f-9ac2-4707-8c4c-30ae6b77ed4b" data-shadow-dom async></script>
+<script id="kindly-chat" src="https://chat.kindlycdn.com/kindly-chat.js" data-bot-key="a0051ca0-b560-439a-a50e-cdca0a33e0b1" data-shadow-dom async></script>
 
 {{--<script src='{{asset('js/widget.js')}}'></script>--}}
 </body>
