@@ -74,6 +74,7 @@ class ProductController extends Controller
             $table->capacity = $request->capacity;
             $table->noise_level = $request->noise_level;
             $table->price = $request->price;
+            $table->descriptions = $request->descriptions;
             if ($request->has('photo')) {
                 // Get image file
                 $image = $request->file('photo');
@@ -109,7 +110,15 @@ class ProductController extends Controller
         $table = Product::find($id);
         $attr_id = $table->productAttributes()->select('attributes_id')->get()->toArray();
         $attr = Attribute::orderBy('name')->whereNotIn('id', $attr_id)->get();
-        return view('admin.products.product-show')->with(['table' => $table, 'attr' => $attr]);
+
+        $products = Product::where('id','<>', $id)->orderBy('name')->get();
+
+        $recommended = '';
+        if(isset($table->other_needs)){
+            $recommended = Product::whereIn('id', json_decode($table->other_needs))->orderBy('name')->get();
+        }
+
+        return view('admin.products.product-show')->with(['table' => $table, 'attr' => $attr, 'recommended' => $recommended, 'products' => $products]);
     }
 
     /**
@@ -148,6 +157,7 @@ class ProductController extends Controller
             $table->capacity = $request->capacity;
             $table->noise_level = $request->noise_level;
             $table->price = $request->price;
+            $table->descriptions = $request->descriptions;
             if ($request->has('photo')) {
                 // Get image file
                 $image = $request->file('photo');
@@ -212,4 +222,29 @@ class ProductController extends Controller
         ProductAttribute::destroy($id);
         return redirect()->back()->with(config('notify.del'));
     }
+
+
+    public function product_recommend(Request $request, $id){
+        //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|array'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        try {
+
+            $table = Product::find($id);
+            $table->other_needs = json_encode($request->product_id);
+            $table->save();
+
+        } catch (\Exception $ex) {
+            return redirect()->back()->with(config('notify.db'));
+        }
+
+        return redirect()->back()->with(config('notify.save'));
+
+    }
+
 }

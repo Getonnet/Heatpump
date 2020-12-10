@@ -39,7 +39,7 @@
                     @foreach($table as $row)
                         <tr>
                             <td>
-                                <a href="#!" class="avatar avatar-xs">
+                                <a href="{{route('product.show', ['id' => $row->id])}}" class="avatar avatar-xs">
                                     <img alt="Admin Photo" src="{{asset($row->photo)}}">
                                 </a>
                             </td>
@@ -57,6 +57,7 @@
                                    data-price="{{$row->price}}"
                                    data-noise="{{$row->noise_level}}"
                                    data-capacity="{{$row->capacity}}"
+                                   data-descriptions="{{$row->descriptions}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
                                 <a class="dropdown-item" href="{{route('product.show', ['id' => $row->id])}}"><i class="fas fa-eye text-info"></i> {{ __('Add Attribute') }}</a>
                                 <a class="dropdown-item delBtn" href="{{route('product.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
@@ -86,6 +87,7 @@
                 let price = $(this).data('price');
                 let noise_level = $(this).data('noise');
                 let capacity = $(this).data('capacity');
+                let descriptions = $(this).data('descriptions');
 
                 $('#ediModal form').attr('action', url);
                 $('#ediModal [name=name]').val(name);
@@ -95,6 +97,7 @@
                 $('#ediModal [name=price]').val(price);
                 $('#ediModal [name=noise_level]').val(noise_level);
                 $('#ediModal [name=capacity]').val(capacity);
+                $('#ediModal [name=descriptions]').val(descriptions);
             });
 
 

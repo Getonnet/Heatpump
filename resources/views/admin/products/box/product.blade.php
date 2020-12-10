@@ -89,6 +89,15 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="add-descriptions">{{__('Descriptions')}}</label>
+                    <textarea class="form-control" name="descriptions" id="add-descriptions" placeholder="{{__('Descriptions')}}" rows="3">{{ old('descriptions')}}</textarea>
+                </div>
+            </div>
+        </div>
+
 
     @endcomponent
 
@@ -145,8 +154,6 @@
                         <small class="form-text text-danger">{{ $errors->first('product_brands_id') }}</small>
                     @endif
                 </div>
-
-
             </div>
             <div class="col">
                 <div class="form-group">
@@ -181,6 +188,15 @@
                     @endif
                 </div>
 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="edi-descriptions">{{__('Descriptions')}}</label>
+                    <textarea class="form-control" name="descriptions" id="edi-descriptions" placeholder="{{__('Descriptions')}}" rows="3">{{ old('descriptions')}}</textarea>
+                </div>
             </div>
         </div>
 

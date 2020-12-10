@@ -22,12 +22,11 @@ class CreateProductsTable extends Migration
             $table->double('price')->default(0);
             $table->string('photo')->nullable();
             $table->json('other_needs')->nullable()->comment('Suggested Product/Accessories');
-
+            $table->text('descriptions')->nullable();
             $table->integer('product_categories_id')->unsigned();
             $table->foreign('product_categories_id')->references('id')->on('product_categories')->onDelete('cascade')->onUpdate('NO ACTION');
             $table->integer('product_brands_id')->unsigned()->nullable();
             $table->foreign('product_brands_id')->references('id')->on('product_brands')->onDelete('SET NULL')->onUpdate('NO ACTION');
-
             $table->softDeletes();
             $table->timestamps();
         });

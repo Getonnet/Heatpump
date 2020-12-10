@@ -10,6 +10,11 @@
             <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
             <span class="btn-inner--text">{{__('Add new attribute')}}</span>
         </button>
+
+        <button class="btn btn-icon btn-success" type="button" data-toggle="modal" data-target="#addModalRc">
+            <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+            <span class="btn-inner--text">{{__('Update Recommended Products')}}</span>
+        </button>
     @endcomponent
 @endsection
 
@@ -90,8 +95,47 @@
                             </table>
                         </div>
 
+                        <h3 class="text-center mb-3">{{__('Descriptions')}}</h3>
+                        {{$table->descriptions}}
                     </div>
                 </div>
+
+                @if($recommended != '')
+                    <div class="row">
+                        <div class="col">
+                            <h3>{{__('Recommended Products List')}}</h3>
+                            <table class="table table-flush datatable">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>{{__('Photo')}}</th>
+                                    <th>{{__('Name')}}</th>
+                                    <th>{{__('Type')}}</th>
+                                    <th>{{__('Category')}}</th>
+                                    <th>{{__('Brand')}}</th>
+                                    <th>{{__('Price')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($recommended as $row)
+                                    <tr>
+                                        <td>
+                                            <a href="{{route('product.show', ['id' => $row->id])}}" class="avatar avatar-xs">
+                                                <img alt="Admin Photo" src="{{asset($row->photo)}}">
+                                            </a>
+                                        </td>
+                                        <td>{{$row->name}}</td>
+                                        <td>{{$row->product_types}}</td>
+                                        <td>{{$row->productCategory->name ?? ''}}</td>
+                                        <td>{{$row->productBrand->name ?? ''}}</td>
+                                        <td>{{$row->price}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                @endif
+
 
             @endcomponent
         </div>

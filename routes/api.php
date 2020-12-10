@@ -29,9 +29,13 @@ Route::group(['middleware' => 'cors'], function () {
 
     Route::get('/catch', 'TestController@refresh')->name('refresh'); //Refresh website
 
+    Route::post('/make-order', 'MakeOrderController@make_order');//Order making
+    Route::get('/product-recommend', 'ProductRecommendationController@recommend');//Product Recommendation
+    Route::get('/product-category', 'ProductRecommendationController@category');
+    Route::get('/product-brand', 'ProductRecommendationController@brand');
+    Route::get('/product-single/{id}', 'ProductRecommendationController@product_show');//Single Product Show
 
     Route::resource('/users', 'User\UserController');
-
 
     Route::post('/auth/login', 'AuthController@login');
     Route::post('/auth/logout', 'AuthController@logout');

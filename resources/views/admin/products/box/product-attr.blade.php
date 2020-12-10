@@ -25,4 +25,37 @@
 
     @endcomponent
 
+
+    @component('components.modal', ['id' => 'addModalRc', 'size' => 'lg', 'action' => route('product.add-recommend', ['id' =>$table->id]), 'title' => __('Update Recommended Products')])
+        @method('PUT')
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{__('Photo')}}</th>
+                    <th>{{__('Name')}}</th>
+                    <th>{{__('Type')}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($products as $row)
+                    <tr>
+                        <td>
+                            <input name="product_id[]" type="checkbox" value="{{$row->id}}" />
+                        </td>
+                        <td>
+                            <a href="#!" class="avatar avatar-xs">
+                                <img alt="Admin Photo" src="{{asset($row->photo)}}">
+                            </a>
+                        </td>
+                        <td>{{$row->name}}</td>
+                        <td>{{$row->product_types}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+    @endcomponent
+
 @endsection
