@@ -29,6 +29,16 @@ class ProductRecommendationController extends Controller
             $rowData['brand'] = $row->productBrand->name ?? '';
             $rowData['descriptions'] = $row->descriptions;
             $rowData['photo'] = asset($row->photo);
+
+            $attr = $row->productAttributes()->get();
+            $attr_data = [];
+            foreach ($attr as $attrRow){
+                $attrData['attribute'] = $attrRow->attribute->name ?? '';
+                $attrData['attr_value'] = $attrRow->attr_value;
+                array_push($attr_data, $attrData);
+            }
+
+            $rowData['attributes'] = $attr_data;
             $rowData['recommended'] = json_decode($row->other_needs);
             array_push($data, $rowData);
         }
@@ -70,6 +80,15 @@ class ProductRecommendationController extends Controller
         $rowData['brand'] = $table->productBrand->name ?? '';
         $rowData['descriptions'] = $table->descriptions;
         $rowData['photo'] = asset($table->photo);
+
+        $attr = $table->productAttributes()->get();
+        $attr_data = [];
+        foreach ($attr as $attrRow){
+            $attrData['attribute'] = $attrRow->attribute->name ?? '';
+            $attrData['attr_value'] = $attrRow->attr_value;
+            array_push($attr_data, $attrData);
+        }
+        $rowData['attributes'] = $attr_data;
 
         return response()->json($rowData);
     }
