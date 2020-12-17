@@ -4,7 +4,7 @@
         <!-- Brand -->
         <div class="sidenav-header  d-flex  align-items-center">
             <a class="navbar-brand" href="{{route('main')}}">
-                <img src="{{asset('assets/img/brand/blue.png')}}" class="navbar-brand-img" alt="Logo">
+                <img src="{{asset('assets/img/brand/logo.svg')}}" class="navbar-brand-img" alt="Logo">
             </a>
             <div class=" ml-auto ">
                 <!-- Sidenav toggler -->
@@ -111,7 +111,7 @@
                     </li>
 
 
-                    <li class="nav-item">
+                   <!--  <li class="nav-item">
                         <a class="nav-link {{request()->routeIs('demo.*') ? 'active':''}}" aria-expanded="{{request()->routeIs('demo.*') ? 'true':'false'}}" href="#navbar-components2" data-toggle="collapse" role="button" aria-controls="navbar-components2">
                             <i class="ni ni-ui-04 text-info"></i>
                             <span class="nav-link-text">Demo</span>
@@ -132,7 +132,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
                     <!--<li class="nav-item">
                         <a class="nav-link {{request()->routeIs('settings') ? 'active':''}}" href="{{route('settings')}}">
