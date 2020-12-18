@@ -20,7 +20,7 @@ Route::get('/', 'BotManController@tinker');
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'admin'], function () {
 
     Route::prefix('admin')->group(function () {
 

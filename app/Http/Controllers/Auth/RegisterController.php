@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -67,5 +69,16 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        Log::info($user);
+        
+        if( $user->user_types == 'admin' || $user->user_types == 'Super Admin' ){
+            return redirect()->route('/admin');
+        }
+
+        return redirect()->to('/');
     }
 }
