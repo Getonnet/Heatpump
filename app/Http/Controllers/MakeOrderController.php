@@ -28,7 +28,7 @@ class MakeOrderController extends Controller
                 ['email' => $request->email],
                 [
                     'name' => $request->name,
-                    'phone' => $request->phone,
+                    'phone' => $request->contact,
                     'zip_code' =>  $request->zip_code,
                     'address' =>  $request->address,
                     'password' =>  bcrypt('12345678') //Using for Bypass required password
@@ -41,9 +41,10 @@ class MakeOrderController extends Controller
                 ['uniq_session' => $request->uniq_session],
                 [
                     'name' => $request->name,
+                    'email' => $request->email,
                     'zip_code' =>  $request->zip_code,
                     'address' =>  $request->address,
-                    'contact' =>  $request->phone,
+                    'contact' =>  $request->contact,
                     'area_info' =>  $request->area_info, //Area Size like how much square feet
                     'insulated' =>  $request->insulated, //Insulated condition, Ex: Good/Bad
                     'wall_type' =>  $request->wall_type, //Wall type like wood

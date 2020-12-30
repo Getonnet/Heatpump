@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth:api', 'cors']], function () {
 
 });
 
-Route::group(['middleware' => 'cors'], function () {
+//Route::group(['middleware' => 'cors'], function () {
 
     Route::get('/catch', 'TestController@refresh')->name('refresh'); //Refresh website
 
@@ -42,4 +42,4 @@ Route::group(['middleware' => 'cors'], function () {
     Route::post('/auth/refresh', 'AuthController@refresh');
     Route::post('/auth/me', 'AuthController@me');
 
-});
+//});
