@@ -36,6 +36,7 @@
                             <td>{{$row->address}}</td>
                             <td>{{$row->zip_code}}</td>
                             @component('components.action', ['del' => $row->id])
+                                @can('customer-edit')
                                 <a class="dropdown-item ediBtn" href="{{route('customer.update', ['id' => $row->id])}}"
                                    data-name="{{$row->name}}"
                                    data-email="{{$row->email}}"
@@ -43,8 +44,10 @@
                                    data-address="{{$row->address}}"
                                    data-zip="{{$row->zip_code}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
-
+                                @endcan
+                                @can('customer-del')
                                 <a class="dropdown-item delBtn" href="{{route('customer.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                @endcan
                             @endcomponent
                         </tr>
                     @endforeach

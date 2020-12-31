@@ -38,9 +38,12 @@
                             <td>{{$row->status}}</td>
                             <td>{{$row->totalAmount() ?? 0}}</td>
                             @component('components.action', ['del' => $row->id])
+                                @can('order-view')
                                 <a class="dropdown-item" href="{{route('orders.show', ['id' => $row->id])}}"><i class="fas fa-eye text-info"></i> {{ __('View Order') }}</a>
-
+                                @endcan
+                                @can('order-del')
                                 <a class="dropdown-item delBtn" href="{{route('orders.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                @endcan
                             @endcomponent
                         </tr>
                     @endforeach

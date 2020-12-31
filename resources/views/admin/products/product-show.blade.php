@@ -3,20 +3,21 @@
 @section('title')
     View Product
 @endsection
+@can('product-edit')
+    @section('btn')
+        @component('components.head-btn')
+            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                <span class="btn-inner--text">{{__('Add new attribute')}}</span>
+            </button>
 
-@section('btn')
-    @component('components.head-btn')
-        <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
-            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-            <span class="btn-inner--text">{{__('Add new attribute')}}</span>
-        </button>
-
-        <button class="btn btn-icon btn-success" type="button" data-toggle="modal" data-target="#addModalRc">
-            <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
-            <span class="btn-inner--text">{{__('Update Recommended Products')}}</span>
-        </button>
-    @endcomponent
-@endsection
+            <button class="btn btn-icon btn-success" type="button" data-toggle="modal" data-target="#addModalRc">
+                <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+                <span class="btn-inner--text">{{__('Update Recommended Products')}}</span>
+            </button>
+        @endcomponent
+    @endsection
+@endcan
 
 
 @section('content')
@@ -78,10 +79,12 @@
                                         <th>{{$row->attribute->name ?? ''}}</th>
                                         <td>{{$row->attr_value}}</td>
                                         <td class="text-right">
+                                            @can('product-edit')
                                             <a href="{{route('product.del-attribute', ['id' => $row->id])}}" class="btn btn-sm btn-danger btn-icon-only" onclick="event.preventDefault();
                                                     document.getElementById('delFormID{{$row->id}}').submit();">
                                                 <span class="btn-inner--icon"><i class="fas fa-trash"></i></span>
                                             </a>
+                                            @endcan
 
                                             <form id="delFormID{{$row->id}}"  action="{{route('product.del-attribute', ['id' => $row->id])}}" method="POST" style="display: none;">
                                                 @csrf

@@ -4,14 +4,16 @@
     {{ __('Users') }}
 @endsection
 
-@section('btn')
-    @component('components.head-btn')
-        <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
-            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-            <span class="btn-inner--text">{{__('Create New User')}}</span>
-        </button>
-    @endcomponent
-@endsection
+@can('user-create')
+    @section('btn')
+        @component('components.head-btn')
+            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                <span class="btn-inner--text">{{__('Create New User')}}</span>
+            </button>
+        @endcomponent
+    @endsection
+@endcan
 
 @section('content')
 
@@ -44,13 +46,16 @@
                             <td>{{$row->email}}</td>
                             <td>{{$row->roles->title ?? ''}}</td>
                             @component('components.action', ['del' => $row->id])
+                                @can('user-edit')
                                 <a class="dropdown-item ediBtn" href="{{route('user.update', ['id' => $row->id])}}"
                                     data-name="{{$row->name}}"
                                     data-email="{{$row->email}}"
                                     data-role="{{$row->roles->id ?? ''}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
-
+                                @endcan
+                                @can('user-del')
                                 <a class="dropdown-item delBtn" href="{{route('user.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                @endcan
                             @endcomponent
                         </tr>
                         @endforeach

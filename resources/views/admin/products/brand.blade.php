@@ -4,15 +4,16 @@
 @section('title')
     {{ __('Product Brand') }}
 @endsection
-
-@section('btn')
-    @component('components.head-btn')
-        <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
-            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-            <span class="btn-inner--text">{{__('Create New Brand')}}</span>
-        </button>
-    @endcomponent
-@endsection
+@can('brand-create')
+    @section('btn')
+        @component('components.head-btn')
+            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                <span class="btn-inner--text">{{__('Create New Brand')}}</span>
+            </button>
+        @endcomponent
+    @endsection
+@endcan
 
 @section('content')
 
@@ -41,11 +42,15 @@
                             </td>
                             <td>{{$row->name}}</td>
                             @component('components.action', ['del' => $row->id])
-                                    <a class="dropdown-item ediBtn" href="{{route('product.brand.update', ['id' => $row->id])}}"
+                                @can('brand-edit')
+                                <a class="dropdown-item ediBtn" href="{{route('product.brand.update', ['id' => $row->id])}}"
                                        data-name="{{$row->name}}"
                                        data-title="{{$row->title}}"
                                        data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
-                                    <a class="dropdown-item delBtn" href="{{route('product.brand.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                @endcan
+                                @can('brand-del')
+                                <a class="dropdown-item delBtn" href="{{route('product.brand.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                @endcan
                             @endcomponent
                         </tr>
                     @endforeach

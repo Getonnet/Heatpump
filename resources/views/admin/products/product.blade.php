@@ -5,14 +5,16 @@
     {{ __('Product List') }}
 @endsection
 
-@section('btn')
-    @component('components.head-btn')
-        <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
-            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-            <span class="btn-inner--text">{{__('Add New Product')}}</span>
-        </button>
-    @endcomponent
-@endsection
+@can('product-create')
+    @section('btn')
+        @component('components.head-btn')
+            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                <span class="btn-inner--text">{{__('Add New Product')}}</span>
+            </button>
+        @endcomponent
+    @endsection
+@endcan
 
 @section('content')
 
@@ -49,6 +51,7 @@
                             <td>{{$row->productBrand->name ?? ''}}</td>
                             <td>{{$row->price}}</td>
                             @component('components.action', ['del' => $row->id])
+                                @can('product-edit')
                                 <a class="dropdown-item ediBtn" href="{{route('product.update', ['id' => $row->id])}}"
                                    data-name="{{$row->name}}"
                                    data-ptypes="{{$row->product_types}}"
@@ -60,7 +63,10 @@
                                    data-descriptions="{{$row->descriptions}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
                                 <a class="dropdown-item" href="{{route('product.show', ['id' => $row->id])}}"><i class="fas fa-eye text-info"></i> {{ __('Add Attribute') }}</a>
+                                @endcan
+                                @can('product-del')
                                 <a class="dropdown-item delBtn" href="{{route('product.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                @endcan
                             @endcomponent
                         </tr>
                     @endforeach

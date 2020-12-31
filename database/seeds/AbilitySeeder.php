@@ -30,7 +30,6 @@ class AbilitySeeder extends Seeder
                 'title' => 'Users Delete'
             ],
 
-
             [
                 'name' => 'role-create',
                 'title' => 'Role Create'
@@ -47,7 +46,6 @@ class AbilitySeeder extends Seeder
                 'name' => 'role-del',
                 'title' => 'Role Delete'
             ],
-
 
             [
                 'name' => 'cat-create',
@@ -120,29 +118,6 @@ class AbilitySeeder extends Seeder
                 'title' => 'Product Attribute Delete'
             ],
 
-
-            [
-                'name' => 'question-create',
-                'title' => 'Question Create'
-            ],
-            [
-                'name' => 'question-view',
-                'title' => 'Question List View'
-            ],
-            [
-                'name' => 'question-edit',
-                'title' => 'Question Edit'
-            ],
-            [
-                'name' => 'question-del',
-                'title' => 'Question Delete'
-            ],
-            [
-                'name' => 'answer-view',
-                'title' => 'Question Answer View'
-            ],
-
-
             [
                 'name' => 'order-view',
                 'title' => 'Order List View'
@@ -151,7 +126,6 @@ class AbilitySeeder extends Seeder
                 'name' => 'order-del',
                 'title' => 'Order Delete'
             ],
-
 
             [
                 'name' => 'customer-view',

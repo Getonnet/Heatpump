@@ -5,14 +5,16 @@
     {{ __('User Role') }}
 @endsection
 
-@section('btn')
-    @component('components.head-btn')
-        <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
-            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-            <span class="btn-inner--text">{{__('Create New Role')}}</span>
-        </button>
-    @endcomponent
-@endsection
+@can('role-create')
+    @section('btn')
+        @component('components.head-btn')
+            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#addModal">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                <span class="btn-inner--text">{{__('Create New Role')}}</span>
+            </button>
+        @endcomponent
+    @endsection
+@endcan
 
 @section('content')
 
@@ -41,13 +43,17 @@
                                     <a class="dropdown-item" href="#">{{ __('Default Role') }}</a>
                                     <a class="dropdown-item" href="#">{{ __('Update Not Possible') }}</a>
                                     @else
+                                    @can('role-edit')
                                     <a class="dropdown-item ediBtn" href="{{route('user.role.update', ['id' => $row->id])}}"
                                        data-name="{{$row->name}}"
                                        data-title="{{$row->title}}"
                                        data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
 
                                     <a class="dropdown-item" href="{{route('user.role.show', ['id' => $row->id])}}"><i class="ni ni-check-bold text-info"></i>  {{__('Role Ability')}}</a>
+                                    @endcan
+                                    @can('role-del')
                                     <a class="dropdown-item delBtn" href="{{route('user.role.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
+                                    @endcan
                                 @endif
 
                             @endcomponent
