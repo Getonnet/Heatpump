@@ -14,8 +14,12 @@ class ProductRecommendationController extends Controller
         /**
          * Using Condition in product query, if need. I am just using demo recommendation query without condition
          */
+        $tbl = Product::orderBy('price');
+        if(isset($request->types)){
+            $tbl->where('product_types', $request->types); //AC, Heater, Accessories
+        }
+        $table = $tbl->get();
 
-        $table = Product::orderBy('price')->get();
 
         $data = [];
         foreach ($table as $row){
