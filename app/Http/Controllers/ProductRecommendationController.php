@@ -18,6 +18,9 @@ class ProductRecommendationController extends Controller
         if(isset($request->types)){
             $tbl->where('product_types', $request->types); //AC, Heater, Accessories
         }
+        if(isset($request->title)){
+            $tbl->where('name', $request->title); //Product title search
+        }
         $table = $tbl->get();
 
 
