@@ -26,6 +26,51 @@ class ProductRecommendationController extends Controller
 
         $data = [];
         foreach ($table as $row){
+           // $request->condition == Godt || Dårlig;
+
+            $rowData['is_remand'] = false;
+            if(isset($request->size) && isset($request->condition)){
+
+                if($request->types == 'Heater'){
+                    if($request->condition == 'Godt'){
+                        if($request->size <= 80){
+                            if($row->name == 'Daikin Moskus 25' || $row->name == 'Daikin  Standard Gulv 25'){
+                                $rowData['is_remand'] = true;
+                            }
+                        }elseif ($request->size > 80 && $request->size <= 120){
+                            if($row->name == 'Daikin Moskus 35' || $row->name == 'Daikin Synergi 30' ||  $row->name == 'Daikin Stylish' || $row->name == 'Daikin  Standard Gulv 35'){
+                                $rowData['is_remand'] = true;
+                            }
+                        }else{
+                            if($row->name == 'Daikin Synergi 40'){
+                                $rowData['is_remand'] = true;
+                            }
+                        }
+                    }else{
+                        if($request->size <= 80){
+                            if($row->name == 'Daikin Moskus 35' || $row->name == 'Daikin Synergi 30' ||  $row->name == 'Daikin Stylish' || $row->name == 'Daikin  Standard Gulv 35'){
+                                $rowData['is_remand'] = true;
+                            }
+                        }elseif ($request->size > 80){
+                            if($row->name == 'Daikin Synergi 40'){
+                                $rowData['is_remand'] = true;
+                            }
+                        }
+                    }
+                }else{
+                    if($request->size <= 20){
+                        if($row->name == 'Sensira 25'){
+                            $rowData['is_remand'] = true;
+                        }
+                    }else{
+                        if($row->name == 'Sensira 35'){
+                            $rowData['is_remand'] = true;
+                        }
+                    }
+                }
+
+            }
+
             $rowData['id'] = $row->id;
             $rowData['name'] = $row->name;
             $rowData['types'] = $row->product_types;
