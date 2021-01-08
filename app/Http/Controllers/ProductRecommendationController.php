@@ -26,6 +26,7 @@ class ProductRecommendationController extends Controller
 
         $data = [];
         foreach ($table as $row){
+
            // $request->condition == Godt || Dårlig;
 
             $rowData['is_recommend'] = false;
