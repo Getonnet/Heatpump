@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Artisan;
 
 class TestController extends Controller
 {
+
+    public function index(){
+        return redirect(route('main'));
+    }
+
     public function refresh(){
         Artisan::call('cache:clear');
         Artisan::call('config:cache');

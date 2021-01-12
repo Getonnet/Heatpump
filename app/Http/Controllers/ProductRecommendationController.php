@@ -23,12 +23,9 @@ class ProductRecommendationController extends Controller
         }
         $table = $tbl->get();
 
-
         $data = [];
         foreach ($table as $row){
-
            // $request->condition == Godt || Dårlig;
-
             $rowData['is_recommend'] = false;
             if(isset($request->size) && isset($request->condition)){
 

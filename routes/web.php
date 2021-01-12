@@ -15,12 +15,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'BotManController@tinker');
+//Route::get('/', 'BotManController@tinker');
 
-Route::match(['get', 'post'], '/botman', 'BotManController@handle');
+//Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 
 
 Route::group(['middleware' => 'admin'], function () {
+
+    Route::get('/', 'TestController@index')->name('admin');
 
     Route::prefix('admin')->group(function () {
 
