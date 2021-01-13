@@ -9,7 +9,7 @@ class TestController extends Controller
 {
 
     public function index(){
-        return redirect(route('main'));
+        return redirect('/admin');
     }
 
     public function refresh(){

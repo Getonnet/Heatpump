@@ -81,6 +81,15 @@
                     </li>
                     @endcan
 
+                    @can ('order-view')
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->routeIs('orders-request.index') ? 'active':''}}" href="{{route('orders-request.index')}}">
+                                <i class="ni ni-email-83 text-primary"></i>
+                                <span class="nav-link-text">Order Request</span>
+                            </a>
+                        </li>
+                    @endcan
+
                     @can ('customer-view')
                     <li class="nav-item">
                         <a class="nav-link {{request()->routeIs('customer.index') ? 'active':''}}" href="{{route('customer.index')}}">

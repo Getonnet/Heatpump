@@ -59,6 +59,7 @@ Route::group(['middleware' => 'admin'], function () {
          * ------------------
          */
         Route::resource('/orders', 'Admin\Orders\OrderController');
+        Route::resource('/orders-request', 'Admin\Orders\OrderRequestController');
         /*-------------------
          * /Customer Orders
          * ------------------

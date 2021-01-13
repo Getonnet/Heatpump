@@ -24,6 +24,7 @@ class CreateCustomerOrdersTable extends Migration
             $table->string('insulated')->nullable();
             $table->string('wall_type')->nullable();
             $table->string('uniq_session')->nullable();
+            $table->boolean('is_request')->default(0)->comment('0=not request & 1=request');
             $table->enum('status',['Pending', 'Processing', 'Canceled'])->default('Pending');
             $table->integer('users_id')->unsigned()->nullable()->comment('Using for if customer is logged in');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('NO ACTION');

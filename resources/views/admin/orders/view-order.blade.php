@@ -36,15 +36,15 @@
                             </p>
                         </div>
                         <div class="col">
-                            <p class="m-0"><b>Name:</b> {{$table->name}}</p>
-                            <p class="m-0"><b>Contact:</b> {{$table->contact}}</p>
-                            <p class="m-0"><b>Email:</b> {{$table->email}}</p>
-                            <p class="m-0"><b>Address:</b> {{$table->address}} - {{$table->zip_code}}</p>
+                            <p class="m-0"><b>{{__('Name')}}:</b> {{$table->name}}</p>
+                            <p class="m-0"><b>{{__('Contact')}}:</b> {{$table->contact}}</p>
+                            <p class="m-0"><b>{{__('Email')}}:</b> {{$table->email}}</p>
+                            <p class="m-0"><b>{{__('Address')}}:</b> {{$table->address}} - {{$table->zip_code}}</p>
                         </div>
                         <div class="col">
-                            <p class="m-0"><b>Area Size:</b> {{$table->area_info}}</p>
-                            <p class="m-0"><b>Insulation Condition:</b> {{$table->insulated}}</p>
-                            <p class="m-0"><b>Wall Type:</b> {{$table->wall_type}}</p>
+                            <p class="m-0"><b>{{__('Room Size')}}:</b> {{$table->area_info}} m<sup>2</sup></p>
+                            <p class="m-0"><b>{{__('Insulation Condition')}}:</b> {{$table->insulated}}</p>
+                            <p class="m-0"><b>{{__('Wall Type')}}:</b> {{$table->wall_type}}</p>
                         </div>
                     </div>
 

@@ -29,7 +29,7 @@ class CustomerOrder extends Model
     /**
      * @var array
      */
-    protected $fillable = ['users_id', 'name', 'zip_code', 'address', 'contact', 'email', 'area_info', 'insulated', 'wall_type', 'uniq_session', 'status', 'deleted_at', 'created_at', 'updated_at'];
+    protected $fillable = ['users_id', 'name', 'zip_code', 'address', 'contact', 'email', 'area_info', 'insulated', 'wall_type', 'uniq_session', 'is_request', 'status', 'deleted_at', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
