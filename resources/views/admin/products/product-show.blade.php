@@ -61,6 +61,10 @@
                                         <th>{{__('Price')}}</th>
                                         <td>{{$table->price}}</td>
                                     </tr>
+                                    <tr>
+                                        <th>{{__('Details Link')}}</th>
+                                        <td><a href="{{$table->details_link ?? '#'}}" target="_blank">{{__('Go to')}}</a></td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

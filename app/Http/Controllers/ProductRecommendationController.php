@@ -77,6 +77,7 @@ class ProductRecommendationController extends Controller
             $rowData['price'] = $row->price;
             $rowData['category'] = $row->productCategory->name ?? '';
             $rowData['brand'] = $row->productBrand->name ?? '';
+            $rowData['urls'] = $row->details_link;
             $rowData['descriptions'] = $row->descriptions;
             $rowData['photo'] = asset($row->photo);
 
@@ -128,6 +129,7 @@ class ProductRecommendationController extends Controller
         $rowData['price'] = $table->price;
         $rowData['category'] = $table->productCategory->name ?? '';
         $rowData['brand'] = $table->productBrand->name ?? '';
+        $rowData['urls'] = $table->details_link;
         $rowData['descriptions'] = $table->descriptions;
         $rowData['photo'] = asset($table->photo);
 

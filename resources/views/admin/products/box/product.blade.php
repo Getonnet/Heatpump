@@ -92,6 +92,14 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
+                    <label for="add-link">{{__('Details Link')}}</label>
+                    <input type="url" name="details_link" class="form-control" id="add-link" placeholder="https://example.com" value="{{ old('details_link') ?? '' }}" />
+                    @if ($errors->has('details_link'))
+                        <small class="form-text text-danger">{{ $errors->first('details_link') }}</small>
+                    @endif
+                </div>
+
+                <div class="form-group">
                     <label for="add-descriptions">{{__('Descriptions')}}</label>
                     <textarea class="form-control" name="descriptions" id="add-descriptions" placeholder="{{__('Descriptions')}}" rows="3">{{ old('descriptions')}}</textarea>
                 </div>
@@ -173,8 +181,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="edi-name">{{__('Price')}}</label>
-                    <input type="number" step="any" min="0" name="price" class="form-control" id="edi-name" placeholder="{{__('Price')}}" value="{{ old('price') ?? 0 }}" required />
+                    <label for="edi-price">{{__('Price')}}</label>
+                    <input type="number" step="any" min="0" name="price" class="form-control" id="edi-price" placeholder="{{__('Price')}}" value="{{ old('price') ?? 0 }}" required />
                     @if ($errors->has('price'))
                         <small class="form-text text-danger">{{ $errors->first('price') }}</small>
                     @endif
@@ -193,6 +201,14 @@
 
         <div class="row">
             <div class="col">
+                <div class="form-group">
+                    <label for="edi-link">{{__('Details Link')}}</label>
+                    <input type="url" name="details_link" class="form-control" id="edi-link" placeholder="https://example.com" value="{{ old('details_link') ?? '' }}" />
+                    @if ($errors->has('details_link'))
+                        <small class="form-text text-danger">{{ $errors->first('details_link') }}</small>
+                    @endif
+                </div>
+
                 <div class="form-group">
                     <label for="edi-descriptions">{{__('Descriptions')}}</label>
                     <textarea class="form-control" name="descriptions" id="edi-descriptions" placeholder="{{__('Descriptions')}}" rows="3">{{ old('descriptions')}}</textarea>

@@ -23,8 +23,6 @@
                         <th>{{__('Phone')}}</th>
                         <th>{{__('Address')}}</th>
                         <th>{{__('Area')}}</th>
-                        <th>{{__('Insulated')}}</th>
-                        <th>{{__('Wall')}}</th>
                         <th class="text-right"><i class="fas fa-ellipsis-v"></i></th>
                     </tr>
                     </thead>
@@ -37,8 +35,6 @@
                             <td>{{$row->contact}}</td>
                             <td>{{$row->address}}-{{$row->zip_code}}</td>
                             <td>{{$row->area_info}} m<sup>2</sup></td>
-                            <td>{{$row->insulated}}</td>
-                            <td>{{$row->wall_type}}</td>
                             @component('components.action', ['del' => $row->id])
                                 @can('order-del')
                                     <a class="dropdown-item delBtn" href="{{route('orders.destroy', ['id' => $row->id])}}" data-form="delFormID{{$row->id}}" ><i class="fas fa-trash text-danger"></i>  {{__('Delete')}}</a>
@@ -77,10 +73,9 @@
 
             });
 
-
             $('.datatable').DataTable({
                 columnDefs: [
-                    { orderable: false, "targets": [8] }
+                    { orderable: false, "targets": [6] }
                 ]
             });
 

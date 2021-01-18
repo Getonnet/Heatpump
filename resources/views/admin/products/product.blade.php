@@ -60,6 +60,7 @@
                                    data-price="{{$row->price}}"
                                    data-noise="{{$row->noise_level}}"
                                    data-capacity="{{$row->capacity}}"
+                                   data-links="{{$row->details_link}}"
                                    data-descriptions="{{$row->descriptions}}"
                                    data-toggle="modal" data-target="#ediModal"><i class="fas fa-user-edit text-success"></i> {{ __('Edit') }}</a>
                                 <a class="dropdown-item" href="{{route('product.show', ['id' => $row->id])}}"><i class="fas fa-eye text-info"></i> {{ __('Add Attribute') }}</a>
@@ -94,6 +95,7 @@
                 let noise_level = $(this).data('noise');
                 let capacity = $(this).data('capacity');
                 let descriptions = $(this).data('descriptions');
+                let details_link = $(this).data('links');
 
                 $('#ediModal form').attr('action', url);
                 $('#ediModal [name=name]').val(name);
@@ -103,6 +105,7 @@
                 $('#ediModal [name=price]').val(price);
                 $('#ediModal [name=noise_level]').val(noise_level);
                 $('#ediModal [name=capacity]').val(capacity);
+                $('#ediModal [name=details_link]').val(details_link);
                 $('#ediModal [name=descriptions]').val(descriptions);
             });
 

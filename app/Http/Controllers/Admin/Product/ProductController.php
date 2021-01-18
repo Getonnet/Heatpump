@@ -59,6 +59,7 @@ class ProductController extends Controller
             'capacity' => 'required|numeric',
             'noise_level' => 'required|numeric',
             'price' => 'required|numeric',
+            'details_link' => 'nullable|url',
             'photo' => 'sometimes|file'
         ]);
 
@@ -74,6 +75,7 @@ class ProductController extends Controller
             $table->capacity = $request->capacity;
             $table->noise_level = $request->noise_level;
             $table->price = $request->price;
+            $table->details_link = $request->details_link;
             $table->descriptions = $request->descriptions;
             if ($request->has('photo')) {
                 // Get image file
@@ -142,7 +144,15 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'string|required|min:3|max:191'
+            'name' => 'string|required|min:3|max:191',
+            'product_types' => 'string|required|max:15',
+            'product_categories_id' => 'required|numeric',
+            'product_brands_id' => 'required|numeric',
+            'capacity' => 'required|numeric',
+            'noise_level' => 'required|numeric',
+            'price' => 'required|numeric',
+            'details_link' => 'nullable|url',
+            'photo' => 'sometimes|file'
         ]);
 
         if ($validator->fails()) {
@@ -156,6 +166,7 @@ class ProductController extends Controller
             $table->product_brands_id = $request->product_brands_id;
             $table->capacity = $request->capacity;
             $table->noise_level = $request->noise_level;
+            $table->details_link = $request->details_link;
             $table->price = $request->price;
             $table->descriptions = $request->descriptions;
             if ($request->has('photo')) {

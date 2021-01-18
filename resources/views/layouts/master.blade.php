@@ -64,7 +64,6 @@
 <!-- /Main content -->
 
 
-
 <!-- Argon Scripts -->
 <!-- Core -->
 <script src="{{asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>

@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('photo')->nullable();
             $table->json('other_needs')->nullable()->comment('Suggested Product/Accessories');
             $table->text('descriptions')->nullable();
+            $table->string('details_link')->nullable();
             $table->integer('product_categories_id')->unsigned();
             $table->foreign('product_categories_id')->references('id')->on('product_categories')->onDelete('cascade')->onUpdate('NO ACTION');
             $table->integer('product_brands_id')->unsigned()->nullable();
