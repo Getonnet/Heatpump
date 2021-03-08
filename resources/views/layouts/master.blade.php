@@ -66,6 +66,7 @@
 
 <!-- Argon Scripts -->
 <!-- Core -->
+<script src="{{asset('js/moment.min.js')}}"></script>
 <script src="{{asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/vendor/js-cookie/js.cookie.js')}}"></script>
@@ -76,12 +77,16 @@
 <script src="{{asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('assets/vendor/datatables.net-select/js/dataTables.select.min.js')}}"></script>
+<script src="{{asset('js/datetime-moment.js')}}"></script>
 <!-- Argon JS -->
 <script src="{{asset('assets/js/argon.min.js')}}?v=1.2.0"></script>
 <script src="{{asset('js/admin.js')}}"></script>
 <!-- Notification Area -->
 @include('include.admin.notify')
 <!-- Custom JS -->
+<script type="text/javascript">
+    $.fn.dataTable.moment('DD/MM/YYYY');
+</script>
 @yield('script')
 </body>
 
